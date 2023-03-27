@@ -1,5 +1,3 @@
-
-
 function ContentTitle() {
   return (
     <div className="content__title playlist-title">

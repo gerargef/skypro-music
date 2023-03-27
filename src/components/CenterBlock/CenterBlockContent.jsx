@@ -1,11 +1,11 @@
 
 import ContentTitle from './ContentTitle'
-import PlayList from './PlayList'
-function CenterBlockContent() {
+import PlayList from '../Play/PlayList'
+function CenterBlockContent({tracks}) {
   return (
     <div className="centerblock__content">
         <ContentTitle/>
-        <PlayList/>
+        <PlayList tracks={tracks}/>
     </div>
   )
 }
