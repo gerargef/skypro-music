@@ -1,5 +1,3 @@
-
-
 function Searcher() {
   return (
     <div className="centerblock__search search">

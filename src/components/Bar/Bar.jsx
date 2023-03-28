@@ -1,5 +1,4 @@
-
-import Player from "./Player";
+import Player from "./Player/Player";
 import Volume from "./Volume";
 
 function Bar() {
