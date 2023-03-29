@@ -1,6 +1,9 @@
 import Dropdown from './Dropdown/Dropdown'
 import React, { useState } from 'react'
 import Counter from './Dropdown/Counter/Counter'
+import * as S from '../../style/style'
+
+const filterListByYear = ['Более новые', 'Более старые']
 
 function FilterItem({ isDropdownsOpen, type, toggleDropDown, tracks, name }) {
     const [isOpen, setIsOpen] = useState(false)
@@ -11,8 +14,6 @@ function FilterItem({ isDropdownsOpen, type, toggleDropDown, tracks, name }) {
         )
         return filterListWithNoDuplicate
     }
-
-    const filterListByYear = ['Более новые', 'Более старые']
 
     const toggle = () => {
         setIsOpen(!isOpen)
@@ -25,15 +26,9 @@ function FilterItem({ isDropdownsOpen, type, toggleDropDown, tracks, name }) {
         setSelectedFilter(count)
     }
     return (
-        <div className="filter__item">
-            <div
-                className="filter__button button-author _btn-text"
-                onClick={() => toggle()}
-            >
-                {name}
-            </div>
+        <S.FilterItem>
+            <S.FilterButton onClick={() => toggle()}>{name}</S.FilterButton>
             {selectedFilter ? <Counter count={selectedFilter} /> : null}
-
             {isDropdownsOpen ? (
                 <Dropdown
                     type={type}
@@ -45,7 +40,7 @@ function FilterItem({ isDropdownsOpen, type, toggleDropDown, tracks, name }) {
                     }
                 />
             ) : null}
-        </div>
+        </S.FilterItem>
     )
 }
 

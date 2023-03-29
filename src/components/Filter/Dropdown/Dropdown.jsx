@@ -1,49 +1,48 @@
 import { useEffect, useState } from 'react'
+import * as S from '../../../style/style'
 
-function Dropdown(props) {
-    const { type, filterList, riseSelectedFilterCount } = props
+function Dropdown({ type, filterList, riseSelectedFilterCount }) {
     const [filterCount, setFilterCount] = useState(0)
     useEffect(() => {
         riseSelectedFilterCount(filterCount)
     }, [filterCount])
 
     return (
-        <div className="dropdown">
-            <div className="dropdown__wrapper">
-                <div className="dropdown__content">
+        <S.Dropdown>
+            <S.DropdownWrapper>
+                <S.DropdownContent>
                     {type !== 'year' ? (
                         filterList.map((item, index) => {
                             return (
-                                <p
-                                    className="dpopdown__item"
+                                <S.DpopdownItem
                                     key={index}
                                     onClick={() =>
                                         setFilterCount(filterCount + 1)
                                     }
                                 >
                                     {item}
-                                </p>
+                                </S.DpopdownItem>
                             )
                         })
                     ) : (
-                        <div className="dropdown__radio">
+                        <S.DropdownRadio>
                             {filterList.map((item, index) => {
                                 return (
-                                    <label className="radio__label" key={index}>
-                                        <input
+                                    <S.RadioLabel key={index}>
+                                        <S.RadioInput
                                             type="radio"
                                             name="radio"
-                                            className="radio__input"
-                                        />{' '}
+                                        />
+                                        <S.RadioBox></S.RadioBox>
                                         <span>{item}</span>
-                                    </label>
+                                    </S.RadioLabel>
                                 )
                             })}
-                        </div>
+                        </S.DropdownRadio>
                     )}
-                </div>
-            </div>
-        </div>
+                </S.DropdownContent>
+            </S.DropdownWrapper>
+        </S.Dropdown>
     )
 }
 

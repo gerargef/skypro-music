@@ -1,13 +1,14 @@
-
 import ContentTitle from './ContentTitle'
 import PlayList from '../Play/PlayList'
-function CenterBlockContent({tracks}) {
-  return (
-    <div className="centerblock__content">
-        <ContentTitle/>
-        <PlayList tracks={tracks}/>
-    </div>
-  )
+import * as S from '../../style/style'
+
+function CenterBlockContent({ tracks }) {
+    return (
+        <S.CenterblockContent>
+            <ContentTitle />
+            <PlayList tracks={tracks} />
+        </S.CenterblockContent>
+    )
 }
 
 export default CenterBlockContent

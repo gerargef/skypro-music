@@ -1,41 +1,31 @@
 import { countTrackTime } from '../../utils/utils'
-
+import * as S from '../../style/style'
 function PlayItem({ name, author, album, duration_in_seconds }) {
     return (
-        <div className="playlist__item">
-            <div className="playlist__track track">
-                <div className="track__title">
-                    <div className="track__title-image">
-                        <svg className="track__title-svg" alt="music">
+        <S.PlaylistItem>
+            <S.Track>
+                <S.TrackTtitle>
+                    <S.TrackTitleImage>
+                        <S.TrackTitleSvg alt="music">
                             <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                        </svg>
-                    </div>
-                    <div className="track__title-text">
-                        <a className="track__title-link" href="http://">
-                            {name} <span className="track__title-span"></span>
-                        </a>
-                    </div>
-                </div>
-                <div className="track__author">
-                    <a className="track__author-link" href="http://">
-                        {author}
-                    </a>
-                </div>
-                <div className="track__album">
-                    <a className="track__album-link" href="http://">
-                        {album}
-                    </a>
-                </div>
-                <div className="track__time">
-                    <svg className="track__time-svg" alt="time">
+                        </S.TrackTitleSvg>
+                    </S.TrackTitleImage>
+                    <S.TrackTitleLink href="http://">
+                        {name} <span className="track__title-span"></span>
+                    </S.TrackTitleLink>
+                </S.TrackTtitle>
+                <S.TrackAuthorLink href="http://">{author}</S.TrackAuthorLink>
+                <S.TrackAlbumLink href="http://">{album}</S.TrackAlbumLink>
+                <div>
+                    <S.TrackTimeSvg alt="time">
                         <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                    </svg>
-                    <span className="track__time-text">
+                    </S.TrackTimeSvg>
+                    <S.TrackTimeText>
                         {countTrackTime(duration_in_seconds)}
-                    </span>
+                    </S.TrackTimeText>
                 </div>
-            </div>
-        </div>
+            </S.Track>
+        </S.PlaylistItem>
     )
 }
 

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import SceletonPlayList from '../Sceleton/SceletonPlayList'
 import PlayItem from './PlayItem'
-
+import * as S from '../../style/style'
 function PlayList({ tracks }) {
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
@@ -11,22 +11,17 @@ function PlayList({ tracks }) {
         }, 2000)
     }, [])
     return (
-        <div className="content__playlist playlist">
+        <S.ContentPlaylist>
             {isLoading ? (
-                <section className="sceletons">
-                    <SceletonPlayList />
-                    <SceletonPlayList />
-                    <SceletonPlayList />
-                    <SceletonPlayList />
-                    <SceletonPlayList />
-                    <SceletonPlayList />
-                    <SceletonPlayList />
-                    <SceletonPlayList />
-                </section>
+                <>
+                    {Array.from({ length: 10 }).map((i, index) => (
+                        <SceletonPlayList key={index} />
+                    ))}
+                </>
             ) : (
                 tracks.map((track) => <PlayItem key={track.id} {...track} />)
             )}
-        </div>
+        </S.ContentPlaylist>
     )
 }
 
