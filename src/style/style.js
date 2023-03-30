@@ -458,6 +458,7 @@ export const RadioLabel = styled.label`
         transition: 120ms transform ease-in-out;
         box-shadow: inset 1em 1em var(--form-control-color);
         background-color: #fff;
+    }
 `
 
 export const RadioBox = styled.div`
@@ -486,10 +487,11 @@ export const RadioBox = styled.div`
 `
 export const RadioInput = styled.input`
     display: none;
-  &:checked + ${RadioBox} {
-      &::after {
-        transform: scale(1);
-      }
+    &:checked + ${RadioBox} {
+        &::after {
+            transform: scale(1);
+        }
+    }
 `
 
 export const Filter = styled.div`
