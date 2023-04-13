@@ -1,12 +1,12 @@
-//import './css/style.css'
-import MainPage from './pages/MainPage'
 import { GlobalStyle } from './style/style'
+import React from 'react'
+import AppRouters from './AppRouters'
 
 function App() {
     return (
         <>
             <GlobalStyle />
-            <MainPage />
+            <AppRouters />
         </>
     )
 }

@@ -5,17 +5,18 @@ import { useState, useEffect } from 'react'
 import { getAllTracks } from '../../API/API'
 import * as S from '../../style/style'
 
-function CenterBlock() {
+function CenterBlock({ centerBlockTitle = 'Треки', settedTracks }) {
     const [tracks, setTracks] = useState([])
     useEffect(() => {
         getAllTracks().then((data) => setTracks(data))
-    }, [])
+    })
+
     return (
         <S.Centerblock>
             <Searcher />
-            <S.CenterblockTitle>Треки</S.CenterblockTitle>
-            <Filter tracks={tracks} />
-            <CenterBlockContent tracks={tracks} />
+            <S.CenterblockTitle>{centerBlockTitle}</S.CenterblockTitle>
+            <Filter tracks={settedTracks ? settedTracks : tracks} />
+            <CenterBlockContent tracks={settedTracks ? settedTracks : tracks} />
         </S.Centerblock>
     )
 }

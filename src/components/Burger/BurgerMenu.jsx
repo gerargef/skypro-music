@@ -4,13 +4,13 @@ function Menu() {
     return (
         <S.MenuList>
             <S.MenuItem>
-                <S.MenuLink href="http://">Главное</S.MenuLink>
+                <S.MenuLink to="/">Главное</S.MenuLink>
             </S.MenuItem>
             <S.MenuItem>
-                <S.MenuLink href="http://">Мой плейлист</S.MenuLink>
+                <S.MenuLink to="/my-tracks">Мои треки</S.MenuLink>
             </S.MenuItem>
             <S.MenuItem>
-                <S.MenuLink href="http://">Войти</S.MenuLink>
+                <S.MenuLink to="/login">Выйти</S.MenuLink>
             </S.MenuItem>
         </S.MenuList>
     )

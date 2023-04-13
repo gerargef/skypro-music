@@ -1,4 +1,5 @@
 import styled, { css, createGlobalStyle } from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const GlobalStyle = createGlobalStyle`
 * {
@@ -60,6 +61,7 @@ export const Wrapper = styled.div`
     background-color: #383838;
 `
 export const Container = styled.div`
+    min-height: 100vh;
     max-width: 1920px;
     margin: 0 auto;
     position: relative;
@@ -89,6 +91,7 @@ export const LogoImg = styled.img`
 `
 
 export const Centerblock = styled.div`
+    min-height: 100vh;
     flex-grow: 3;
     padding: 20px 40px 20px 111px;
 `
@@ -303,6 +306,73 @@ export const VolumeProgress = styled.div`
 export const VolumeProgressLine = styled.input`
     ${HoverMixin}
     width: 109px;
+    height: 2px;
+    margin-bottom: 12px;
+    -webkit-appearance: none;
+    background: #797979;
+    background-image: linear-gradient(#ffffff, #ffffff);
+    background-size: ${(props) => props.$range}% 100%;
+    background-repeat: no-repeat;
+
+    ::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background: #ffffff;
+        transition: background 0.3s ease-in-out;
+    }
+
+    ::-moz-range-thumb {
+        -webkit-appearance: none;
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background: #ffffff;
+        transition: background 0.3s ease-in-out;
+    }
+
+    ::-ms-thumb {
+        -webkit-appearance: none;
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background: #ffffff;
+        transition: background 0.3s ease-in-out;
+    }
+
+    ::-webkit-slider-thumb:hover {
+        background: #ffffff;
+    }
+
+    ::-moz-range-thumb:hover {
+        background: #ffffff;
+    }
+
+    ::-ms-thumb:hover {
+        background: #ffffff;
+    }
+
+    ::-webkit-slider-runnable-track {
+        -webkit-appearance: none;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+    }
+
+    ::-moz-range-track {
+        -webkit-appearance: none;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+    }
+
+    ::-ms-track {
+        -webkit-appearance: none;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+    }
 `
 export const NavBurger = styled.div`
     width: 20px;
@@ -324,7 +394,7 @@ export const MenuItem = styled.li`
     padding: 5px 0;
     margin-bottom: 16px;
 `
-export const MenuLink = styled.a`
+export const MenuLink = styled(Link)`
     ${MainTextMixin}
 `
 export const CenterblockSearch = styled.div`
@@ -366,6 +436,12 @@ export const CenterblockTitle = styled.h2`
     letter-spacing: -0.8px;
     margin-bottom: 45px;
 `
+export const CenterblockText = styled.h6`
+    ${MainTextMixin}
+    font-size: 32px;
+    line-height: 72px;
+`
+
 export const ContentTitle = styled.div`
     display: grid;
     grid-template-columns: 7.5fr 5.4fr 4.08fr 1fr;
@@ -426,6 +502,8 @@ export const DropdownContent = styled.div`
 `
 export const DpopdownItem = styled.p`
     ${MainTextMixin}
+    color: ${(props) => (props.$selected ? '#b672ff' : '#ffffff')};
+    text-decoration: ${(props) => (props.$selected ? 'underline' : 'none')};
     font-size: 20px;
     white-space: nowrap;
     :hover {
@@ -575,4 +653,69 @@ export const ContentPlaylist = styled.div`
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+`
+export const Login = styled.div`
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+export const LoginModal = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 44px;
+    background: #ffffff;
+    border-radius: 12px;
+`
+
+export const LoginInput = styled.input`
+    ${MainTextMixin}
+    color: #000000;
+    width: 278.5px;
+    height: 35px;
+    border: none;
+    border-bottom: 1px solid #d0cece;
+    ::placeholder {
+        ${MainTextMixin}
+        color: #D0CECE;
+        font-size: 18px;
+    }
+    :focus {
+        ${MainTextMixin}
+        font-size: 18px;
+        color: #000000;
+        outline: none;
+        border-bottom: 1px solid #000000;
+    }
+`
+export const LoginButton = styled.button`
+    ${MainTextMixin}
+    font-size: 18px;
+    background-color: ${(props) => (props.$purple ? '#580EA2' : '#FFFFFF')};
+    color: ${(props) => (props.$purple ? '#FFFFFF' : '#000000')};
+    margin-top: ${(props) => (props.$purple ? '40px' : '0')};
+    width: 278.5px;
+    height: 52px;
+    border: 1px solid #d0cece;
+    border-radius: 6px;
+    :hover {
+        ${HoverMixin}
+        background-color: ${(props) => (props.$purple ? '#3F007D' : '#F4F5F6')};
+    }
+    :active {
+        background-color: ${(props) => (props.$purple ? '#271A58' : '#D0CECE')};
+    }
+    :disabled {
+        background-color: #d0cece;
+    }
+`
+export const InputError = styled.p`
+    ${MainTextMixin}
+    color: #000000;
 `
