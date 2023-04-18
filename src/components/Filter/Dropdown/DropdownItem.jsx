@@ -2,17 +2,19 @@ import React from 'react'
 
 import * as S from '../../../style/style'
 import { useState } from 'react'
+import { useEffect } from 'react'
 
-function DropdownItem({ id, item, riseCount }) {
+function DropdownItem({ id, item, riseCount, filterCountArray }) {
     const [isSelected, setIsSelected] = useState(false)
-    const itemHandleCLick = (e) => {
-        riseCount(e)
-        setIsSelected(!isSelected)
-    }
+    useEffect(() => {
+        if (filterCountArray.includes(String(id))) {
+            setIsSelected(true)
+        } else setIsSelected(false)
+    }, [filterCountArray])
     return (
         <S.DpopdownItem
             id={id}
-            onClick={(e) => itemHandleCLick(e)}
+            onClick={(e) => riseCount(e)}
             $selected={isSelected}
         >
             {item}

@@ -45,5 +45,5 @@ export const getToken = async (body) => {
             'Content-Type': 'application/json;charset=utf-8',
         },
     })
-    return await response.json()
+    return await response
 }
