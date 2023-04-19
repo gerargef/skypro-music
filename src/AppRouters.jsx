@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import MainPage from './pages/MainPage'
 import Error from './pages/Error'
 import Login from './pages/Login'
@@ -9,8 +9,13 @@ import Collections from './pages/Collections'
 import { ProtectedRoute } from './ProtectedRoute/PtotectedRoute'
 import { getCookie } from './utils/utils'
 function AppRouters() {
-    const [isAllowed] = useState(Boolean(getCookie('token')))
+    const [isAllowed, setIsAllowed] = useState(Boolean(getCookie('token')))
 
+    const navigate = useNavigate()
+
+    React.useEffect(() => {
+        setIsAllowed(getCookie('token'))
+    }, [navigate])
     return (
         <Routes>
             <Route path="/login" element={<Login />} />

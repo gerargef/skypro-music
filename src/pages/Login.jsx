@@ -25,7 +25,9 @@ function Login() {
             .catch(() => setError(true))
     }
     useEffect(() => {
-        console.log(navigate)
+        if (getCookie('token')) {
+            navigate('/')
+        }
     }, [navigate])
     return (
         <S.Wrapper>
