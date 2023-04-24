@@ -1,12 +1,13 @@
 import Player from './Player/Player'
 import Volume from './Volume'
 import * as S from '../../style/style'
+import BarPlayerProgress from './Player/BarPlayerProgress'
 
 function Bar() {
     return (
         <S.Bar>
             <S.BarContent>
-                <S.BarPlayerProgress></S.BarPlayerProgress>
+                <BarPlayerProgress />
                 <S.BarPlayerBlock>
                     <Player />
                     <Volume />

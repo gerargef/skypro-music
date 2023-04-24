@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Bar from '../components/Bar/Bar'
+import Audio from '../components/Bar/Audio'
 import CenterBlock from '../components/CenterBlock/CenterBlock'
 import Nav from '../components/Nav/Nav'
 import Sidebar from '../components/Sidebar/Sidebar'
@@ -22,7 +22,7 @@ function MyTracks() {
                     />
                     <Sidebar />
                 </S.Main>
-                <Bar />
+                <Audio />
             </S.Container>
         </S.Wrapper>
     )

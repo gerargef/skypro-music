@@ -1,14 +1,15 @@
-import PlayerControls from './PlayerControls'
+import PlayerControls from '../Player/PlayerControls'
 import PlayerTrack from './PlayerTrack'
 import * as S from '../../../style/style'
+import { forwardRef } from 'react'
 
-function Player() {
+const Player = forwardRef(function Player(props, ref) {
     return (
         <S.BarPlayer>
-            <PlayerControls />
+            <PlayerControls ref={ref} />
             <PlayerTrack />
         </S.BarPlayer>
     )
-}
+})
 
 export default Player

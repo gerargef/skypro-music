@@ -267,10 +267,10 @@ export const BarContent = styled.div`
     display: flex;
     flex-direction: column;
 `
-export const BarPlayerProgress = styled.div`
+export const BarPlayerProgress = styled.progress`
     width: 100%;
     height: 5px;
-    background: #2e2e2e;
+    accent-color: #b672ff;
 `
 export const BarPlayerBlock = styled.div`
     height: 73px;
@@ -718,4 +718,7 @@ export const LoginButton = styled.button`
 export const InputError = styled.p`
     ${MainTextMixin}
     color: #000000;
+`
+export const Audio = styled.audio`
+    display: none;
 `

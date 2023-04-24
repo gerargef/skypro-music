@@ -11,12 +11,12 @@ function PlayerTrack() {
                 </S.TrackPlayImage>
                 <S.TrackPlayAuthor>
                     <S.TrackPlayAuthorLink href="http://">
-                        Ты та...
+                        Dropin
                     </S.TrackPlayAuthorLink>
                 </S.TrackPlayAuthor>
                 <S.TrackPlayAlbum>
                     <S.TrackPlayAlbumLink href="http://">
-                        Баста
+                        Bobby Marleni
                     </S.TrackPlayAlbumLink>
                 </S.TrackPlayAlbum>
             </S.TrackPlayContain>
