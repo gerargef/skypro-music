@@ -1,24 +1,23 @@
+import * as S from '../../style/style'
+
 function Menu() {
+    const deleteToken = () => {
+        document.cookie = "token=''=;max-age=-1"
+    }
     return (
-        <div className="nav__menu menu">
-            <ul className="menu__list">
-                <li className="menu__item">
-                    <a href="http://" className="menu__link">
-                        Главное
-                    </a>
-                </li>
-                <li className="menu__item">
-                    <a href="http://" className="menu__link">
-                        Мой плейлист
-                    </a>
-                </li>
-                <li className="menu__item">
-                    <a href="http://" className="menu__link">
-                        Войти
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <S.MenuList>
+            <S.MenuItem>
+                <S.MenuLink to="/">Главное</S.MenuLink>
+            </S.MenuItem>
+            <S.MenuItem>
+                <S.MenuLink to="/my-tracks">Мои треки</S.MenuLink>
+            </S.MenuItem>
+            <S.MenuItem>
+                <S.MenuLink to="/login" onClick={deleteToken}>
+                    Выйти
+                </S.MenuLink>
+            </S.MenuItem>
+        </S.MenuList>
     )
 }
 

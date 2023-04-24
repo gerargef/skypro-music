@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import * as S from '../../style/style'
 
 function Burger({ isOpenMenuCallBack }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -6,14 +7,11 @@ function Burger({ isOpenMenuCallBack }) {
         isOpenMenuCallBack(isMenuOpen)
     }, [isMenuOpen])
     return (
-        <div
-            className="nav__burger burger"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-            <span className="burger__line"></span>
-            <span className="burger__line"></span>
-            <span className="burger__line"></span>
-        </div>
+        <S.NavBurger onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {Array.from({ length: 3 }).map((i, index) => (
+                <S.BurgerLine key={index} />
+            ))}
+        </S.NavBurger>
     )
 }
 

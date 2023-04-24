@@ -1,10 +1,13 @@
-function SidebarItem({ img }) {
+import { Link } from 'react-router-dom'
+import * as S from '../../style/style'
+
+function SidebarItem({ img, alt, linkTo }) {
     return (
-        <div className="sidebar__item">
-            <a className="sidebar__link" href="#">
-                <img className="sidebar__img" src={img} alt="day's playlist" />
-            </a>
-        </div>
+        <S.SidebarItem>
+            <Link to={linkTo}>
+                <img src={img} alt={alt} />
+            </Link>
+        </S.SidebarItem>
     )
 }
 

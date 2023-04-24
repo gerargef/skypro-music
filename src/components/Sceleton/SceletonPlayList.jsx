@@ -1,25 +1,20 @@
 import React from 'react'
+import * as S from '../../style/style'
 
 function SceletonPlayList() {
     return (
-        <div className="playlist__item">
-            <div className="playlist__track track">
-                <div className="track__title">
-                    <div className="track__title-image">
-                        <div className="sceleton sceleton__track-title"></div>
-                    </div>
-                    <div className="track__title-text">
-                        <div className="sceleton sceleton__title-text"></div>
-                    </div>
-                </div>
-                <div className="track__author">
-                    <div className="sceleton sceleton__track-author"></div>
-                </div>
-                <div className="track__album">
-                    <div className="sceleton sceleton__track-album"></div>
-                </div>
-            </div>
-        </div>
+        <S.PlaylistItem>
+            <S.Track>
+                <S.TrackTtitle>
+                    <S.TrackTitleImage>
+                        <S.SceletonTrackTitle></S.SceletonTrackTitle>
+                    </S.TrackTitleImage>
+                    <S.SceletonTitleText></S.SceletonTitleText>
+                </S.TrackTtitle>
+                <S.SceletonTrackAuthor></S.SceletonTrackAuthor>
+                <S.SceletonTrackAlbum></S.SceletonTrackAlbum>
+            </S.Track>
+        </S.PlaylistItem>
     )
 }
 

@@ -1,60 +1,42 @@
 import { useState } from 'react'
-
+import * as S from '../../style/style'
 import FilterItem from './FilterItem'
 
 function Filter({ tracks }) {
-    const [isDropdownsOpen, setIsDropdownsOpen] = useState([
-        { type: 'author', isOpen: false },
-        { type: 'year', isOpen: false },
-        { type: 'genre', isOpen: false },
-    ])
-
+    const [isDropdownsOpen, setIsDropdownsOpen] = useState(null)
     const toggleDropDown = (type) => {
-        const copyArr = Object.assign([], isDropdownsOpen)
-        const trueDropdownType = copyArr.filter(
-            (item) => item.isOpen === true
-        )[0]
-        if (trueDropdownType && trueDropdownType.type !== type) {
-            copyArr.forEach((item) => {
-                if (item.type === trueDropdownType.type) {
-                    item.isOpen = !item.isOpen
-                }
-            })
+        if (type === isDropdownsOpen) {
+            setIsDropdownsOpen(null)
+            return
         }
-        copyArr.forEach((item) => {
-            if (item.type === type) {
-                item.isOpen = !item.isOpen
-            }
-        })
-        setIsDropdownsOpen(copyArr)
+        setIsDropdownsOpen(type)
     }
-
     return (
-        <div className="centerblock__filter filter">
-            <div className="filter__title">Искать по:</div>
+        <S.Filter>
+            <S.FilterTitle>Искать по:</S.FilterTitle>
             <FilterItem
                 name={'исполнителю'}
                 tracks={tracks}
-                isDropdownsOpen={isDropdownsOpen[0].isOpen}
                 type={'author'}
+                isDropdownsOpen={isDropdownsOpen === 'author'}
                 toggleDropDown={toggleDropDown}
                 setIsDropdownsOpen={setIsDropdownsOpen}
             />
             <FilterItem
                 name={'году выпуска'}
                 tracks={tracks}
-                isDropdownsOpen={isDropdownsOpen[1].isOpen}
                 type={'year'}
+                isDropdownsOpen={isDropdownsOpen === 'year'}
                 toggleDropDown={toggleDropDown}
             />
             <FilterItem
                 name={'жанру'}
                 tracks={tracks}
-                isDropdownsOpen={isDropdownsOpen[2].isOpen}
                 type={'genre'}
+                isDropdownsOpen={isDropdownsOpen === 'genre'}
                 toggleDropDown={toggleDropDown}
             />
-        </div>
+        </S.Filter>
     )
 }
 

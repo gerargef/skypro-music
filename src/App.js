@@ -1,12 +1,14 @@
-import './css/style.css'
-import MainPage from './pages/MainPage';
+import { GlobalStyle } from './style/style'
+import React from 'react'
+import AppRouters from './AppRouters'
 
 function App() {
-  return (
-    <div className="App">
-      <MainPage/>
-    </div>
-  );
+    return (
+        <>
+            <GlobalStyle />
+            <AppRouters />
+        </>
+    )
 }
 
-export default App;
+export default App

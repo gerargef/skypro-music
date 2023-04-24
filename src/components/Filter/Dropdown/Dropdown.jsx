@@ -1,49 +1,42 @@
-import { useEffect, useState } from 'react'
+import * as S from '../../../style/style'
+import DropdownItem from './DropdownItem'
 
-function Dropdown(props) {
-    const { type, filterList, riseSelectedFilterCount } = props
-    const [filterCount, setFilterCount] = useState(0)
-    useEffect(() => {
-        riseSelectedFilterCount(filterCount)
-    }, [filterCount])
-
+function Dropdown({ type, filterList, riseCount, filterCountArray }) {
     return (
-        <div className="dropdown">
-            <div className="dropdown__wrapper">
-                <div className="dropdown__content">
+        <S.Dropdown>
+            <S.DropdownWrapper>
+                <S.DropdownContent>
                     {type !== 'year' ? (
                         filterList.map((item, index) => {
                             return (
-                                <p
-                                    className="dpopdown__item"
+                                <DropdownItem
                                     key={index}
-                                    onClick={() =>
-                                        setFilterCount(filterCount + 1)
-                                    }
-                                >
-                                    {item}
-                                </p>
+                                    id={index}
+                                    item={item}
+                                    riseCount={riseCount}
+                                    filterCountArray={filterCountArray}
+                                />
                             )
                         })
                     ) : (
-                        <div className="dropdown__radio">
+                        <S.DropdownRadio>
                             {filterList.map((item, index) => {
                                 return (
-                                    <label className="radio__label" key={index}>
-                                        <input
+                                    <S.RadioLabel key={index}>
+                                        <S.RadioInput
                                             type="radio"
                                             name="radio"
-                                            className="radio__input"
-                                        />{' '}
+                                        />
+                                        <S.RadioBox></S.RadioBox>
                                         <span>{item}</span>
-                                    </label>
+                                    </S.RadioLabel>
                                 )
                             })}
-                        </div>
+                        </S.DropdownRadio>
                     )}
-                </div>
-            </div>
-        </div>
+                </S.DropdownContent>
+            </S.DropdownWrapper>
+        </S.Dropdown>
     )
 }
 
