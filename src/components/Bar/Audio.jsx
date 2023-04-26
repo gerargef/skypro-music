@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as S from '../../style/style'
 import Player from './Player/Player'
 import Volume from './Volume'
@@ -7,6 +7,10 @@ import { useRef } from 'react'
 
 function Audio() {
     const audioRef = useRef(null)
+    const [duration, setDuration] = useState(0)
+    const onLoadMetaData = () => {
+        setDuration(audioRef.current.duration)
+    }
 
     return (
         <>
@@ -16,10 +20,11 @@ function Audio() {
                 controls
                 src="/audio/Bobby_Marleni_-_Dropin.mp3"
                 ref={audioRef}
+                onLoadedMetadata={onLoadMetaData}
             ></S.Audio>
             <S.Bar>
                 <S.BarContent>
-                    <BarPlayerProgress ref={audioRef} />
+                    <BarPlayerProgress ref={audioRef} duration={duration} />
                     <S.BarPlayerBlock>
                         <Player ref={audioRef} />
                         <Volume />

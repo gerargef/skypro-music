@@ -267,10 +267,55 @@ export const BarContent = styled.div`
     display: flex;
     flex-direction: column;
 `
-export const BarPlayerProgress = styled.progress`
-    width: 100%;
+export const BarPlayerProgress = styled.input`
     height: 5px;
-    accent-color: #b672ff;
+    width: 100%;
+    background: #797979;
+    background-image: linear-gradient(#b672ff, #b672ff);
+    background-size: ${(props) => props.$range}% 100%;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    -webkit-appearance: none;
+    outline: none;
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #b672ff;
+        cursor: pointer;
+    }
+    &::-moz-range-thumb {
+        -webkit-appearance: none;
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        background: #b672ff;
+        transition: background 0.3s ease-in-out;
+    }
+
+    ::-moz-range-thumb {
+        -webkit-appearance: none;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #ff4500;
+        cursor: ew-resize;
+        box-shadow: 0 0 2px 0 #555;
+        transition: background 0.3s ease-in-out;
+    }
+
+    ::-ms-thumb {
+        -webkit-appearance: none;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #ff4500;
+        cursor: ew-resize;
+        box-shadow: 0 0 2px 0 #555;
+        transition: background 0.3s ease-in-out;
+    }
 `
 export const BarPlayerBlock = styled.div`
     height: 73px;
@@ -721,4 +766,12 @@ export const InputError = styled.p`
 `
 export const Audio = styled.audio`
     display: none;
+`
+export const BarPlayerText = styled.p`
+    ${MainTextMixin}
+    color: #696969;
+    line-height: 16px;
+    text-align: end;
+    padding-top: 10px;
+    padding-right: 10px;
 `
