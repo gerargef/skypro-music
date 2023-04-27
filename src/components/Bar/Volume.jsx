@@ -5,13 +5,6 @@ function Volume() {
     const [value, setValue] = useState(70)
     function handleInputChange(e) {
         setValue(e.target.value)
-        console.log(value)
-        // let target = e.target
-        // console.log(target.value)
-        // const val = target.value
-
-        // target.style.backgroundSize =
-        //     ((val - min) * 100) / (max - min) + '% 100%'
     }
 
     return (
