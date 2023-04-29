@@ -44,28 +44,28 @@ const MainTextMixin = css`
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #ffffff;
+    color: ${(props) => props.theme.supportiveColor};
 `
 
 const SvgDark = css`
     fill: transparent;
-    stroke: #4e4e4e;
+    stroke: ${(props) => props.theme.svgDarkColor};
 `
 const SvgLight = css`
     fill: transparent;
-    stroke: #696969;
+    stroke: ${(props) => props.theme.svgLightColor};
 `
 
 export const Wrapper = styled.div`
     overflow: hidden;
-    background-color: #383838;
+    background-color: ${(props) => props.theme.additionalColor};
 `
 export const Container = styled.div`
     min-height: 100vh;
     max-width: 1920px;
     margin: 0 auto;
     position: relative;
-    background-color: #181818;
+    background-color: ${(props) => props.theme.mainColor};
 `
 
 export const Main = styled.div`
@@ -74,7 +74,7 @@ export const Main = styled.div`
 `
 export const MainNav = styled.div`
     flex-grow: 1;
-    background-color: #181818;
+    background-color: ${(props) => props.theme.additionalColor};
     padding: 20px 0 20px 36px;
 `
 export const NavLogo = styled.div`
@@ -87,7 +87,7 @@ export const NavLogo = styled.div`
 
 export const LogoImg = styled.img`
     height: 17px;
-    color: #181818;
+    color: transparent;
 `
 
 export const Centerblock = styled.div`
@@ -114,7 +114,7 @@ export const SidebarPersonalName = styled.p`
 export const SidebarAvatar = styled.div`
     width: 43px;
     height: 43px;
-    background-color: #313131;
+    background-color: ${(props) => props.theme.additionalColor};
     border-radius: 50%;
 `
 export const SidebarBlock = styled.div`
@@ -137,7 +137,7 @@ export const SidebarItem = styled.div`
 `
 
 const SceletonMixin = css`
-    background-color: #313131;
+    background-color: ${(props) => props.theme.additionalColor};
     height: 19px;
 `
 
@@ -195,7 +195,7 @@ export const TrackPlayContain = styled.div`
 export const TrackPlayImage = styled.div`
     width: 51px;
     height: 51px;
-    background-color: #313131;
+    ${(props) => props.theme.additionalColor};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -254,14 +254,14 @@ export const PlayerBtnSvg = styled.svg`
     ${HoverMixin}
     width: 15px;
     height: 14px;
-    stroke: #d9d9d9;
+    stroke: ${SvgLight};
 `
 export const Bar = styled.div`
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: rgba(28, 28, 28, 0.5);
+    background: ${(props) => props.theme.mainColor};
 `
 export const BarContent = styled.div`
     display: flex;
@@ -270,7 +270,7 @@ export const BarContent = styled.div`
 export const BarPlayerProgress = styled.input`
     height: 5px;
     width: 100%;
-    background: #797979;
+    background: ${(props) => props.theme.barProgressColor};
     background-image: linear-gradient(#b672ff, #b672ff);
     background-size: ${(props) => props.$range}% 100%;
     background-repeat: no-repeat;
@@ -344,6 +344,7 @@ export const VolumeSvg = styled.svg`
     width: 13px;
     height: 18px;
     fill: transparent;
+    stroke: ${SvgLight};
 `
 export const VolumeProgress = styled.div`
     width: 109px;
@@ -354,8 +355,11 @@ export const VolumeProgressLine = styled.input`
     height: 2px;
     margin-bottom: 12px;
     -webkit-appearance: none;
-    background: #797979;
-    background-image: linear-gradient(#ffffff, #ffffff);
+    background: ${(props) => props.theme.volumeProgressColor.background};
+    background-image: linear-gradient(
+        ${(props) => props.theme.volumeProgressColor.thumb},
+        ${(props) => props.theme.volumeProgressColor.thumb}
+    );
     background-size: ${(props) => props.$range}% 100%;
     background-repeat: no-repeat;
 
@@ -364,7 +368,7 @@ export const VolumeProgressLine = styled.input`
         height: 12px;
         width: 12px;
         border-radius: 50%;
-        background: #ffffff;
+        background: ${(props) => props.theme.volumeProgressColor.thumb};
         transition: background 0.3s ease-in-out;
     }
 
@@ -373,7 +377,7 @@ export const VolumeProgressLine = styled.input`
         height: 12px;
         width: 12px;
         border-radius: 50%;
-        background: #ffffff;
+        background: ${(props) => props.theme.volumeProgressColor.thumb};
         transition: background 0.3s ease-in-out;
     }
 
@@ -382,20 +386,20 @@ export const VolumeProgressLine = styled.input`
         height: 12px;
         width: 12px;
         border-radius: 50%;
-        background: #ffffff;
+        background: ${(props) => props.theme.volumeProgressColor.thumb};
         transition: background 0.3s ease-in-out;
     }
 
     ::-webkit-slider-thumb:hover {
-        background: #ffffff;
+        background: ${(props) => props.theme.volumeProgressColor.thumb};
     }
 
     ::-moz-range-thumb:hover {
-        background: #ffffff;
+        background: ${(props) => props.theme.volumeProgressColor.thumb};
     }
 
     ::-ms-thumb:hover {
-        background: #ffffff;
+        background: ${(props) => props.theme.volumeProgressColor.thumb};
     }
 
     ::-webkit-slider-runnable-track {
@@ -455,7 +459,6 @@ export const SearchSvg = styled.svg`
     width: 17px;
     height: 17px;
     margin-right: 5px;
-    stroke: #ffffff;
     fill: transparent;
 `
 
@@ -522,7 +525,7 @@ export const Dropdown = styled.div`
     position: absolute;
     top: 49px;
     left: 0;
-    background-color: #313131;
+    background-color: ${(props) => props.theme.additionalColor};
     border-radius: 12px;
     padding-right: 34px;
 `
@@ -532,11 +535,11 @@ export const DropdownWrapper = styled.div`
     margin: 36.5px 0px 36.5px 34px;
     ::-webkit-scrollbar {
         width: 4px;
-        background: #4b4949;
+        background: ${(props) => props.theme.additionalColor};
     }
     ::-webkit-scrollbar-thumb {
         border-radius: 10px;
-        background-color: #ffffff;
+        background-color: ${(props) => props.theme.barProgressColor};
     }
 `
 export const DropdownContent = styled.div`
@@ -547,7 +550,8 @@ export const DropdownContent = styled.div`
 `
 export const DpopdownItem = styled.p`
     ${MainTextMixin}
-    color: ${(props) => (props.$selected ? '#b672ff' : '#ffffff')};
+    color: ${(props) =>
+        props.$selected ? '#b672ff' : props.theme.supportiveColor};
     text-decoration: ${(props) => (props.$selected ? 'underline' : 'none')};
     font-size: 20px;
     white-space: nowrap;
@@ -580,14 +584,14 @@ export const RadioLabel = styled.label`
         transform: scale(0);
         transition: 120ms transform ease-in-out;
         box-shadow: inset 1em 1em var(--form-control-color);
-        background-color: #fff;
+        background-color: ${(props) => props.theme.supportiveColor};
     }
 `
 
 export const RadioBox = styled.div`
     height: 1.125rem;
     width: 1.125rem;
-    border: 1px solid #fff;
+    border: 1px solid ${(props) => props.theme.supportiveColor};
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -602,7 +606,7 @@ export const RadioBox = styled.div`
         width: 100%;
         height: 100%;
         display: block;
-        background: #fff;
+        background-color: ${(props) => props.theme.supportiveColor};
         border-radius: 50%;
         cursor: pointer;
         transform: scale(0);
@@ -636,7 +640,7 @@ export const FilterItem = styled.div`
 export const FilterButton = styled.div`
     ${MainTextMixin}
     ${HoverMixin}
-    border: 1px solid #ffffff;
+    border: 1px solid ${(props) => props.theme.supportiveColor};
     border-radius: 60px;
     padding: 6px 20px;
 `
@@ -657,7 +661,7 @@ export const TrackTitleImage = styled.div`
     width: 51px;
     height: 51px;
     padding: 16px;
-    background: #313131;
+    background: ${(props) => props.theme.additionalColor};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -774,4 +778,9 @@ export const BarPlayerText = styled.p`
     text-align: end;
     padding-top: 10px;
     padding-right: 10px;
+`
+export const ToggleThemeSvg = styled.svg`
+    ${SvgLight}
+    width: 39px;
+    height: 39px;
 `
