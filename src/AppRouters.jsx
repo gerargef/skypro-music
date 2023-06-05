@@ -8,13 +8,15 @@ import MyTracks from './pages/MyTracks'
 import Collections from './pages/Collections'
 import { ProtectedRoute } from './ProtectedRoute/PtotectedRoute'
 import { getCookie } from './utils/utils'
+import { useSelector } from 'react-redux'
+import { userSelector } from './store/selectors/selectors'
 function AppRouters() {
     const [isAllowed, setIsAllowed] = useState(Boolean(getCookie('token')))
 
     const navigate = useNavigate()
-
+    const { isAuthenticated } = useSelector(userSelector)
     React.useEffect(() => {
-        setIsAllowed(getCookie('token'))
+        setIsAllowed(isAuthenticated)
     }, [navigate])
     return (
         <Routes>

@@ -1,34 +1,71 @@
 import React, { useEffect, useState } from 'react'
 import * as S from '../style/style'
 import { Link, useNavigate } from 'react-router-dom'
-import { login, getToken } from '../API/API'
-import { getCookie } from '../utils/utils'
+import {
+    useGetTokenMutation,
+    useLoginMutation,
+    useRefreshTokenMutation,
+} from '../services/loginAndAuth'
+import { setLogin } from '../store/slices/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { userSelector } from '../store/selectors/selectors'
+import { refreshAccessToken } from '../store/slices/tokenSlice'
 
 function Login() {
     const [loginUser, setLoginUser] = useState({ email: '', password: '' })
-    const [error, setError] = useState(false)
     const navigate = useNavigate()
-    const loginFunction = async () => {
-        if (getCookie('token')) {
-            document.cookie = "token=''=;max-age=-1"
-        }
-        await login(loginUser)
-        getToken(loginUser)
+    const dispatch = useDispatch()
+    const [login, { isLoading: isLoadingLogin, isError: isLoginError }] =
+        useLoginMutation()
+    const [getToken, { isLoading: isLoadingToken, isError: isTokenError }] =
+        useGetTokenMutation()
+    const [refreshToken] = useRefreshTokenMutation()
+    const { isAuthenticated } = useSelector(userSelector)
+
+    const refreshTokenFunction = async () => {
+        await refreshToken({
+            refresh: localStorage.getItem('refresh'),
+        })
             .then((response) => {
-                if (response.ok) {
-                    document.cookie = `token = ${response.json().access}`
-                    navigate('/')
-                } else {
-                    throw Error('Неверный логин или пароль')
-                }
+                dispatch(refreshAccessToken(response.data.access))
+                dispatch(
+                    setLogin({
+                        id: localStorage.getItem('userID'),
+                    })
+                )
+                navigate('/')
             })
-            .catch(() => setError(true))
+            .catch(() => {
+                localStorage.clear()
+            })
     }
+
     useEffect(() => {
-        if (getCookie('token')) {
+        if (localStorage.getItem('refresh')) {
+            refreshTokenFunction()
+        }
+    }, [])
+
+    const loginFunction = async () => {
+        const responseLogin = await login(loginUser)
+        const loginData = responseLogin.data
+        localStorage.setItem('userID', loginData.id)
+
+        const responseToken = await getToken(loginUser)
+        const tokenData = responseToken.data
+        localStorage.setItem('refresh', tokenData.refresh)
+
+        dispatch(setLogin({ ...loginData, token: tokenData }))
+
+        navigate('/')
+    }
+
+    useEffect(() => {
+        if (isAuthenticated) {
             navigate('/')
         }
     }, [navigate])
+
     return (
         <S.Wrapper>
             <S.Container>
@@ -37,7 +74,7 @@ function Login() {
                         <S.NavLogo>
                             <S.LogoImg src="/img/login-logo.png" alt="logo" />
                         </S.NavLogo>
-                        {error ? (
+                        {isLoginError || isTokenError ? (
                             <S.InputError>
                                 Неверный логин или пароль
                             </S.InputError>
@@ -63,11 +100,18 @@ function Login() {
                                 })
                             }
                         />
-                        <S.LoginButton onClick={loginFunction} $purple>
+                        <S.LoginButton
+                            onClick={loginFunction}
+                            $purple
+                            disabled={isLoadingLogin || isLoadingToken}
+                        >
                             Войти
                         </S.LoginButton>
                         <Link to="/registration">
-                            <S.LoginButton $purple={false}>
+                            <S.LoginButton
+                                $purple={false}
+                                disabled={isLoadingLogin || isLoadingToken}
+                            >
                                 Зарегистрироваться
                             </S.LoginButton>
                         </Link>

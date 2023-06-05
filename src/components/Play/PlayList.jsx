@@ -7,7 +7,7 @@ function PlayList({ tracks }) {
             {tracks && tracks.length === 0 ? (
                 <S.CenterblockText>Пока здесь ничего нет</S.CenterblockText>
             ) : null}
-            {tracks.length ? (
+            {tracks ? (
                 tracks.map((track) => <PlayItem key={track.id} {...track} />)
             ) : (
                 <>

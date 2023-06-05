@@ -1,14 +1,17 @@
 import { useContext } from 'react'
 import * as S from '../../style/style'
 import { Context } from '../../context/ThemeContext'
-import { ThemeContext } from 'styled-components'
+import { logout } from '../../store/slices/tokenSlice'
+import { useDispatch } from 'react-redux'
+import { setLogout } from '../../store/slices/userSlice'
 
 function Menu() {
     const { themeType, toggleTheme } = useContext(Context)
-    const themeContext = useContext(ThemeContext)
-    console.log(themeContext)
+    const dispatch = useDispatch()
     const deleteToken = () => {
-        document.cookie = "token=''=;max-age=-1"
+        localStorage.clear()
+        dispatch(logout())
+        dispatch(setLogout())
     }
     return (
         <S.MenuList>

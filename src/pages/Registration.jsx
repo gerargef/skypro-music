@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import * as S from '../style/style'
 import { useNavigate } from 'react-router-dom'
-import { registration } from '../API/API'
+// import { registration } from '../API/API'
+import { useSignupMutation } from '../services/loginAndAuth'
 
 function Registration() {
     const [user, setUser] = useState({ email: '', password: '', username: '' })
@@ -19,6 +20,8 @@ function Registration() {
     const [repeatPasswordError, setRepeatPasswordError] = useState(
         'Необходимо ввести пароль еще раз'
     )
+
+    const [signup] = useSignupMutation()
     const blurHandler = (e) => {
         switch (e.target.name) {
             case 'email':
@@ -88,8 +91,8 @@ function Registration() {
         }
     }, [emailError, passwordError, repeatPasswordError])
     const navigate = useNavigate()
-    const regUser = () => {
-        registration(user).then(() => {
+    const regUser = async () => {
+        await signup(user).then(() => {
             navigate('/login')
         })
     }

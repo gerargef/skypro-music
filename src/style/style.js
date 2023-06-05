@@ -688,10 +688,17 @@ export const TrackAlbumLink = styled.a`
 `
 
 export const TrackTimeSvg = styled.svg`
-    ${SvgLight}
+    ${SvgDark}
     width: 14px;
     height: 12px;
     margin-right: 17px;
+    :hover {
+        ${HoverMixin}
+    }
+
+    use {
+        fill: ${(props) => (props.$isFavorite ? '#AD61FF' : 'transparent')};
+    }
 `
 export const TrackTimeText = styled.span`
     ${MainTextMixin}
